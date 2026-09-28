@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 46ch;
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+.lead {
+  color: var(--text-muted);
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+.index {
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}

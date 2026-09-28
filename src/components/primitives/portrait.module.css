@@ -1,0 +1,120 @@
+.portrait {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background:
+    radial-gradient(120% 90% at 30% 0%, rgba(34, 211, 238, 0.14), transparent 60%),
+    var(--bg-raised);
+  isolation: isolate;
+}
+
+/* --- Variants -------------------------------------------------------- */
+.portrait[data-variant='card'] {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+}
+
+.portrait[data-variant='avatar'] {
+  aspect-ratio: 1;
+  width: 72px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --- The photo, treated as a cyan→violet duotone ------------------- */
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+}
+
+/* Colour wash: `color` blend over a greyscale base = duotone */
+.duotone {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    155deg,
+    rgba(34, 211, 238, 0.55) 0%,
+    rgba(129, 140, 248, 0.4) 45%,
+    rgba(232, 121, 249, 0.5) 100%
+  );
+  mix-blend-mode: color;
+}
+
+/* Vignette + bottom fade so any caption stays legible */
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(120% 80% at 50% 20%, transparent 40%, rgba(6, 7, 13, 0.55)),
+    linear-gradient(180deg, transparent 45%, rgba(6, 7, 13, 0.9));
+}
+
+.portrait[data-variant='avatar'] .veil {
+  background: radial-gradient(100% 100% at 50% 30%, transparent 55%, rgba(6, 7, 13, 0.4));
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Fallback when no photo is present --------------------------- */
+.fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--accent-contrast);
+  background: var(--gradient-brand);
+}
+
+.portrait[data-variant='card'] .fallback {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.portrait[data-variant='avatar'] .fallback {
+  font-size: 1.4rem;
+}
+
+/* --- Optional caption over the card ---------------------------- */
+.caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: var(--space-md);
+  background: linear-gradient(180deg, transparent, rgba(6, 7, 13, 0.8));
+}
+
+.captionName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--text-strong);
+}
+
+.captionMeta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--accent-mint);
+}

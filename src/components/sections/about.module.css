@@ -1,0 +1,80 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.aside {
+  position: sticky;
+  top: calc(var(--nav-height) + 2rem);
+}
+
+.lead {
+  font-size: var(--step-2);
+  font-weight: 500;
+  color: var(--text-strong);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-display);
+}
+
+.prose p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  line-height: 1.65;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.panel {
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+}
+
+.panelTitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+  margin-bottom: var(--space-md);
+}
+
+.focusList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.focusItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.focusMarker {
+  margin-top: 0.55rem;
+  width: 22px;
+  height: 1px;
+  background: var(--gradient-brand);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .aside {
+    position: static;
+    max-width: 320px;
+  }
+}

@@ -1,0 +1,133 @@
+@import './reset.css';
+@import './tokens.css';
+
+/* ==========================================================================
+   Global page styles
+   ========================================================================== */
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  color: var(--text-body);
+  background-color: var(--bg-void);
+  overflow-x: hidden;
+}
+
+/* The aurora canvas sits behind everything */
+#root {
+  position: relative;
+  z-index: var(--z-content);
+  isolation: isolate;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+strong {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+/* --- Reusable layout helpers ------------------------------------------- */
+.shell {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.shell--narrow {
+  max-width: var(--content-narrow);
+}
+
+/* Text that carries the brand gradient */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Small monospace eyebrow label */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.8em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Glass panel primitive */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-glass);
+}
+
+/* Visually hidden but available to assistive tech */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  translate: -50% -120%;
+  z-index: var(--z-overlay);
+  padding: 0.7rem 1.2rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  color: var(--text-strong);
+  transition: translate var(--dur-mid) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  translate: -50% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

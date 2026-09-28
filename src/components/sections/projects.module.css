@@ -1,0 +1,240 @@
+.caseList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.case {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--dur-mid) var(--ease-out);
+}
+
+.case:hover {
+  border-color: var(--glass-border-strong);
+}
+
+.case::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 45%;
+  height: 180%;
+  background: var(--gradient-brand-soft);
+  filter: blur(60px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.caseAside {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.kicker {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 700;
+  line-height: 1;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.caseName {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: var(--text-strong);
+  line-height: 1.15;
+}
+
+.caseMeta {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+}
+
+.caseStack {
+  margin-top: auto;
+  padding-top: var(--space-md);
+}
+
+.caseBody {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.blockLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-mint);
+  padding-top: 0.2rem;
+}
+
+.blockText {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.block[data-impact='true'] .blockText {
+  color: var(--text-body);
+}
+
+/* --- Repos ---------------------------------------------------------- */
+.labHeader {
+  margin-top: var(--space-2xl);
+  margin-bottom: var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.labTitle {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.labLead {
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+.ghLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-body);
+  border-bottom: 1px solid var(--glass-border-strong);
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.ghLink:hover {
+  color: var(--accent-mint);
+}
+
+.ghLink svg {
+  width: 15px;
+  height: 15px;
+}
+
+.repoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.repo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  transition: transform var(--dur-mid) var(--ease-out), border-color var(--dur-mid) var(--ease-out);
+}
+
+.repo:hover {
+  transform: translateY(-3px);
+  border-color: var(--glass-border-strong);
+}
+
+.repoTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.repoName {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--text-strong);
+}
+
+.repoArrow {
+  color: var(--text-faint);
+  width: 16px;
+  height: 16px;
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.repo:hover .repoArrow {
+  color: var(--accent-mint);
+  transform: translate(2px, -2px);
+}
+
+.repoDesc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.repoLang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+.repoLangDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-indigo);
+}
+
+.repoLangDot[data-lang='TypeScript'] {
+  background: #3178c6;
+}
+
+.repoLangDot[data-lang='JavaScript'] {
+  background: #f0db4f;
+}
+
+@media (max-width: 860px) {
+  .case {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+  }
+
+  .block {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
